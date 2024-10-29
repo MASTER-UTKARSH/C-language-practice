@@ -7,6 +7,7 @@ int tyler(int a,int b);
 int fact(int a);
 int deci_to_any(int a, int b);
 int any_to_deci(int a, int b);
+void fib(int a,int p1, int p2);
 
 int main(){
     int a,x,y;
@@ -83,6 +84,19 @@ int main(){
     if(v=='y')goto vvv;
     if(v=='n')goto end;
     }
+
+     if(a==5){
+        printf("The value at which you want Fibonacci series: ");
+        scanf("%d",&x);
+        printFib(x);
+
+    printf("Want's to continue[y/n]: ");
+    fflush(stdin);
+    scanf("%c",&v);
+
+    if(v=='y')goto vvv;
+    if(v=='n')goto end;
+    }
 end: return 0;
 }
 
@@ -144,4 +158,28 @@ int any_to_deci(int a,int b){
     }
     return rem;
 }
+
+void fib(int a,int p1,int p2){
+    if (a<3)return;
+    int curr=p1+p2;
+    p2=p1;
+    p1=curr;
+    printf("%d ",curr);
+    return fib(a-1,p1,p2);
+
+}
+
+void printFib(int a) {
+    if (a<1) printf("Invalid number of terms\n");
+    if (a==1) printf(" %d",0);
+    if (a==2) printf("%d %d",0,1);
+
+    else {
+        printf("%d %d ",0,1);
+        fib(a,0,1);
+    }
+    return;
+}
+
+
 
