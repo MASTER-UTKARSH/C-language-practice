@@ -8,6 +8,7 @@ int fact(int a);
 int deci_to_any(int a, int b);
 int any_to_deci(int a, int b);
 void fib(int a,int p1, int p2);
+int prime(int a);
 
 int main(){
     int a,x,y;
@@ -97,6 +98,24 @@ int main(){
     if(v=='y')goto vvv;
     if(v=='n')goto end;
     }
+
+    if(a==6){
+       int n, count = 0, num;
+       printf("Enter the number of prime numbers to find: ");
+       scanf("%d", &n);
+       for (num = n; count < n; num++)
+            if (prime(num)) {
+            printf("%d ", num);
+            count++;
+        }
+    printf("\n");
+    printf("Want's to continue[y/n]: ");
+    fflush(stdin);
+    scanf("%c",&v);
+
+    if(v=='y')goto vvv;
+    if(v=='n')goto end;
+    }
 end: return 0;
 }
 
@@ -130,22 +149,22 @@ int tyler(int a,int b){
     return sin;
 }
 
-int deci_to_any(int a, int b){
-    int i=0,store;
-    store=a;
-    while(store!=0){
-    store=store/b;
-    i++;
-    }
-    int arr[i];
-    for(int j=0;j<i;j++){
-    arr[j]=a%b;
-    a=a/b;
-    }
-    for(int j=i;j>0;j--){
-    printf("%d",arr[j]);}
+int deci_to_any(int a, int b) {
+    if (b < 2 || b > 36) return printf("Base must be between 2 and 36\n"), 0;
+    if (a == 0) return printf("0\n"), 0;
 
+    char arr[32];
+    int i = 0;
+
+    while (a > 0) {
+        arr[i++] = (a % b < 10) ? (a % b + '0') : (a % b - 10 + 'A');
+        a /= b;
+    }
+
+    for (int j = i - 1; j >= 0; j--) putchar(arr[j]);
+    putchar('\n');
 }
+
 
 int any_to_deci(int a,int b){
     int store,rem=0,i=0,kalu;
@@ -159,19 +178,16 @@ int any_to_deci(int a,int b){
     return rem;
 }
 
-void fib(int a,int p1,int p2){
-    if (a<3)return;
-    int curr=p1+p2;
-    p2=p1;
-    p1=curr;
-    printf("%d ",curr);
-    return fib(a-1,p1,p2);
-
+void fib(int a, int p1, int p2) {
+    if (a < 3) return;
+    int curr = p1 + p2;
+    printf("%d ", curr);
+    fib(a-1, p2, curr);
 }
 
 void printFib(int a) {
     if (a<1) printf("Invalid number of terms\n");
-    if (a==1) printf(" %d",0);
+    if (a==1) printf("%d",0);
     if (a==2) printf("%d %d",0,1);
 
     else {
@@ -181,5 +197,11 @@ void printFib(int a) {
     return;
 }
 
+int prime(int a){
+    if (a<= 1) return 0;
+    for (int i=2;i*i<=a;i++)
+    if (a%i==0) return 0;
+    return 1;
+}
 
 
