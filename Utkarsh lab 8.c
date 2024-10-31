@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-int ass(int c, int M3[c]);
-int dec(int a, int b);
+int sort(int c, int M3[c]);
 
 int main()
 {
@@ -168,14 +167,14 @@ int main()
         for(int i=0;i<a;i++)
         {
             fflush(stdin);
-            scanf("%c",&arr[i]);
+            scanf(" %c",&arr[i]);
         }
 
         char con[a],vov[a],x=0,y=0;
 
         for(int i=0;i<a;i++)
         {
-           if(arr[i]=='a'||'e'||'i'||'o'||'u') vov[y++]=arr[i];
+           if(arr[i]=='a'||arr[i]=='e'||arr[i]=='i'||arr[i]=='o'||arr[i]=='u') vov[y++]=arr[i];
            else con[x++]=arr[i];
         }
 
@@ -192,6 +191,8 @@ int main()
         {
         printf("%c,",vov[i]);
         }
+
+        printf("\n");
 
         printf("Want's to continue[y/n]: ");
         fflush(stdin);
@@ -235,7 +236,7 @@ int main()
            }
         }
 
-        ass(a+b,M3);
+        sort(a+b,M3);
 
         printf("Want's to continue[y/n]: ");
         fflush(stdin);
@@ -249,7 +250,7 @@ end: return 0;
 }
 
 
-int ass(int c, int M3[])
+int sort(int c, int M3[])
 {
         int x,y=0,min=0;
         M3[c];
@@ -260,7 +261,7 @@ int ass(int c, int M3[])
             for(int j=0;j<c;j++)
             for(int i=0;i<c-1;i++)
             {
-                if(M3[i]>M3[i+1])
+                if(M3[i]>=M3[i+1])
                 {
                     min=M3[i];
                     M3[i]=M3[i+1];
@@ -275,7 +276,7 @@ int ass(int c, int M3[])
             for(int j=0;j<c;j++)
             for(int i=0;i<c-1;i++)
             {
-                if(M3[i]<M3[i+1])
+                if(M3[i]<=M3[i+1])
                 {
                     min=M3[i];
                     M3[i]=M3[i+1];
